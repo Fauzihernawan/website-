@@ -28,4 +28,5 @@ class Penjualan extends Model
         return $this->belongsTo(Produk::class);
     }
 
+
 }

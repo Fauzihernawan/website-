@@ -43,19 +43,18 @@ Route::group(['middleware' => 'role:admin'], function () {
         Route::patch('edit/{id}', 'update')->name('user.edit.update');
         Route::get('hapus/{id}', 'hapus')->name('user.hapus');
     });
-    Route::controller(DetailPenjualanController::class)->prefix('penjualan')->group(function () {
-        Route::get('detail/{id}', 'detailPenjualan')->name('penjualanDetail');
-    });
 });
 
 Route::group(['middleware' => 'role:petugas'], function () {
     Route::get('/dashboard', [PetugasController::class,  'index'])->name('dashboard_ptgs');
     Route::controller(PetugasController::class)->prefix('dataProduk')->group(function () {
         Route::get('', 'produk')->name('dataProduk');
+        Route::get('pdf{id}', 'exportPdf')->name('cetakPdf');
     });
     Route::controller(PetugasController::class)->prefix('pembelian')->group(function () {
         Route::get('', 'pembelian')->name('pembelian');
         Route::get('tambah', 'tambahPembelian')->name('formPembelian');
         Route::post('tambah', 'simpanPembelian')->name('pembelian.tambah.simpan');
+        Route::get('detail/{id}', 'detailPenjualan')->name('pembelianDetail');
     });
 });

@@ -13,26 +13,24 @@
                 <li class="nav-item {{ request()->routeIs('dashboard_admin') ? 'menu-open active' : '' }}">
                     <a href="{{ route('dashboard_admin') }}"
                         class="nav-link {{ request()->routeIs('dashboard_admin') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-home"></i>
+                        <i class="nav-icon fas fa-home "></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('produk') || request()->routeIs('formproduk') ? 'menu-open active' : '' }}">
-                    <a href="{{ route('produk') }}"
-                        class="nav-link {{ request()->routeIs('produk') || request()->routeIs('formproduk') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs('dataPenjualan') ? 'menu-open active' : '' }}">
+                    <a href="{{ route('dataPenjualan') }}"
+                        class="nav-link {{ request()->routeIs('dataPenjualan') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cube"></i>
-                        <p>Produk</p>
+                        <p>Pembelian</p>
                     </a>
                 </li>
-                @if (isset($detailPenjualan) && $detailPenjualan)
-                    <li class="nav-item {{ request()->routeIs('penjualanDetail') ? 'menu-open active' : '' }}">
-                        <a href="{{ route('penjualanDetail', ['id' => $detailPenjualan->id]) }}"
-                            class="nav-link {{ request()->routeIs('penjualanDetail') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>Pembelian</p>
-                        </a>
-                    </li>
-                @endif
+                <li class="nav-item {{ request()->routeIs('dashboard_admin') ? 'menu-open active' : '' }}">
+                    <a href="{{ route('dashboard_admin') }}"
+                        class="nav-link {{ request()->routeIs('dashboard_admin') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-home "></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
                 <li class="nav-item {{ request()->routeIs('user') || request()->routeIs('formuser') ? 'menu-open active' : '' }}">
                     <a href="{{ route('user') }}"
                         class="nav-link {{ request()->routeIs('user') || request()->routeIs('formuser') ? 'active' : '' }}">

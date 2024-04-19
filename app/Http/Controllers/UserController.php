@@ -30,7 +30,7 @@ class UserController extends Controller
         User::create($data);
         return redirect()->route('user');
     }
-
+    
     public function edit($id)
     {
         $user = User::find($id)->first();

@@ -1,13 +1,13 @@
 @extends('layouts.index')
 
-@section('title', '| Data Penjualan')
+@section('title', '| Data Pembelian')
 
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Data Penjualan</h1>
+                    <h1>Data Pembelian</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,24 +26,27 @@
                 <div class="col-md-10">
                     <div class="card">
                         <div class="card-body">
-                            {{-- <a href="{{ route('kategori.tambah') }}" class="btn btn-primary mb-3">Tambah Kategori</a> --}}
-                            <a href="" class="btn btn-primary mb-3">Export Penjualan (.xlsx)</a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th style="width: 300px">Nama Produkn</th>
+                                        <th style="width: 300px">Nama Pelanggan</th>
+                                        <th style="width: 400px">Tanggal Penjualan</th>
                                         <th style="width: 400px">Total Harga</th>
-                                        <th style="width: 400px">Sub Total</th>
+                                        <th style="width: 250px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($penjualan as $item => $penjualan)
+                                    @foreach ($pembelian as $item)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <th>{{ $penjualan->produk->nm_produk ?? 'Nama produk tidak tersedia' }}</th>
-                                            <th>{{ $penjualan->total_harga }}</th>
-                                            <th>Rp {{ number_format($penjualan->subtotal, 2, ',','.') }}</th>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->pelanggan->nm_pelanggan }}</td>
+                                            <td>{{ $item->tgl_penjualan }}</td>
+                                            <td>Rp {{ number_format($item->total_harga, 2, ',', '.') }}</td>
+                                            <td>
+                                                <button type="button" onclick="window.location='{{ route('pembelianDetail', $item->id) }}'" class="btn btn-info"> Detail</button>
+                                                <a href="{{ route('cetakPdf', $item->id) }}" class="btn btn-info">Pdf</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

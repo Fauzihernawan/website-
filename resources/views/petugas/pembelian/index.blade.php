@@ -28,9 +28,8 @@
                         <div class="card-body">
                             {{-- <a href="{{ route('kategori.tambah') }}" class="btn btn-primary mb-3">Tambah Kategori</a> --}}
                             <div class="d-flex justify-content-between">
-                                <a href="" class="btn btn-success mb-3">Export Penjualan (.xlsx)</a>
                                 <a href="{{ route('formPembelian') }}" class="btn btn-primary mb-3">Input Pembelian</a>
-                            </div>                            
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -38,24 +37,22 @@
                                         <th style="width: 300px">Nama Pelanggan</th>
                                         <th style="width: 400px">Tanggal Penjualan</th>
                                         <th style="width: 400px">Total Harga</th>
-                                        <th style="width: 400px">Di Buat Oleh</th>
-                                        <th style="width: 75px">Aksi</th>
+                                        <th style="width: 250px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php($no = 1)
-                                    @foreach ($penjualan as $item) --}}
+                                    @foreach ($pembelian as $item)
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th>
-                                                
-                                            </th>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->pelanggan->nm_pelanggan }}</td>
+                                            <td>{{ $item->tgl_penjualan }}</td>
+                                            <td>Rp {{ number_format($item->total_harga, 2, ',', '.') }}</td>
+                                            <td>
+                                                <button type="button" onclick="window.location='{{ route('pembelianDetail', $item->id) }}'" class="btn btn-info"> Detail</button>
+                                                <a href="{{ route('cetakPdf', $item->id) }}" class="btn btn-info">Pdf</a>
+                                            </td>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
